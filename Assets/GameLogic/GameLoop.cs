@@ -12,6 +12,9 @@ public class GameLoop : MonoBehaviour
 
 
 
+    /// <summary>
+    /// Reference to the main GameLoop singleton.  Lives through scene changes.
+    /// </summary>
     public static GameLoop MAIN
     {
         get { return GameLoop._MAIN; }
@@ -36,11 +39,30 @@ public class GameLoop : MonoBehaviour
 
 
 
+    /// <summary>
+    /// Called before start
+    /// </summary>
+    void Awake()
+    {
+        if (_MAIN == null)
+        {
+            //Not destroyed when a new scene loads
+            DontDestroyOnLoad(this.gameObject);
+            //ToDo: Don't destroy GUI and Player Data
+            _MAIN = this;
+        }
+        else if (_MAIN != this)
+        {
+            //Destroy this object, but persist the old one
+            Destroy(this.gameObject);
+        }
+    }
+
+
+
     // Use this for initialization
     void Start () {
         Debug.Log("Hello, Space Universe!");
-
-        _MAIN = this;
 
         if (InputManager == null)
         {

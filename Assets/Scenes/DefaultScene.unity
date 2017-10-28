@@ -14,13 +14,13 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 8
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 0.104184695, g: 0.14995499, b: 0.30147058, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.16148998, g: 0.3553762, b: 0.769, a: 1}
+  m_AmbientSkyColor: {r: 0.022469997, g: 0.049447667, b: 0.107, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -129,7 +129,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &189131958
 Transform:
   m_ObjectHideFlags: 0
@@ -564,7 +564,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6611f537845a3e54da0689e3dab8616e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Move_Speed: 5
+  Move_Speed: 0.01
+  MaximumSpeed: 0.5
+  Velocity_Current: {x: 0, y: 0, z: 0}
+  Acceleration_ThisFrame: {x: 0, y: 0, z: 0}
+  FullStopTime_Seconds: 0.5
+  Zoom_ZoomTime: 0.6
+  Zoom_Magnification: 2.5
+  Rotation_Sensitivity: 0.15
+  Rotation_TimeToTarget: 0.5
 --- !u!114 &361916093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1469,6 +1477,7 @@ GameObject:
   - component: {fileID: 2128871911}
   - component: {fileID: 2128871910}
   - component: {fileID: 2128871912}
+  - component: {fileID: 2128871913}
   m_Layer: 0
   m_Name: Directional Light - Sun
   m_TagString: Untagged
@@ -1500,7 +1509,7 @@ Light:
     m_NearPlane: 0.2
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
-  m_Flare: {fileID: 12100000, guid: 57b3d45599c78e4468bcc9dd31ce8bfc, type: 2}
+  m_Flare: {fileID: 0}
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
@@ -1540,3 +1549,18 @@ MonoBehaviour:
   TextStyle: 1
   Highlight_BackgroundColor: 1
   Background_Color: {r: 0.9411765, g: 0.81058013, b: 0.46776468, a: 1}
+--- !u!123 &2128871913
+LensFlare:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2128871909}
+  m_Enabled: 1
+  m_Flare: {fileID: 12100000, guid: 57b3d45599c78e4468bcc9dd31ce8bfc, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Brightness: 1
+  m_FadeSpeed: 3
+  m_IgnoreLayers:
+    serializedVersion: 2
+    m_Bits: 6
+  m_Directional: 1
