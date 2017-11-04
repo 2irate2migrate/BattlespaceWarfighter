@@ -1,4 +1,4 @@
-﻿namespace Assets.GameLogic.Input
+﻿namespace Assets.GameLogic.HWInput
 {
     public class InputKeyState_WithNegative : InputKeyState
     {

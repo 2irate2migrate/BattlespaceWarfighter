@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using UnityEngine;
 
-namespace Assets.GameLogic.Input
+namespace Assets.GameLogic.HWInput
 {
     /// <summary>
     /// Input Key State for a regular button.

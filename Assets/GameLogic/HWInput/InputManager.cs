@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using UnityEngine;
 
-namespace Assets.GameLogic.Input
+namespace Assets.GameLogic.HWInput
 {
     [RequireComponent(typeof(GameLoop))]
     public class InputManager : MonoBehaviour
