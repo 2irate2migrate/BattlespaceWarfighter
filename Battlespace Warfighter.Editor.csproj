@@ -268,13 +268,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Battlespace Warfighter.csproj">
-      <Project>{8868ABBA-C188-8A6B-22F3-4B95E39991C7}</Project>
-      <Name>Battlespace Warfighter</Name>
-    </ProjectReference>
     <ProjectReference Include="Battlespace Warfighter.Plugins.csproj">
       <Project>{67A9F9A8-77EE-5675-4C26-0BF0D38A5C01}</Project>
       <Name>Battlespace Warfighter.Plugins</Name>
+    </ProjectReference>
+    <ProjectReference Include="Battlespace Warfighter.csproj">
+      <Project>{8868ABBA-C188-8A6B-22F3-4B95E39991C7}</Project>
+      <Name>Battlespace Warfighter</Name>
     </ProjectReference>
     <ProjectReference Include="Battlespace Warfighter.Editor.Plugins.csproj">
       <Project>{DF5AA04C-4A40-F5BE-4888-DC8FEF0E5DCC}</Project>
@@ -282,7 +282,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Editor\HierarchyHighlightManager.cs" />
+    <Compile Include="Assets\Editor\HierarchyHighlight.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Standard Assets\PostProcessing\Shaders\ACES.hlsl" />

@@ -12,15 +12,12 @@
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.2.0f3</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -229,11 +226,12 @@
     <Compile Include="Assets\GameLogic\Cameras\_BaseCameraController.cs" />
     <Compile Include="Assets\GameLogic\Cameras\CameraControllerManager.cs" />
     <Compile Include="Assets\GameLogic\Cameras\DefaultCameraController.cs" />
+    <Compile Include="Assets\GameLogic\Effects\InfiniteStarfield.cs" />
     <Compile Include="Assets\GameLogic\GameLoop.cs" />
-    <Compile Include="Assets\GameLogic\Input\InputKeyState.cs" />
-    <Compile Include="Assets\GameLogic\Input\InputKeyState_WithNegative.cs" />
-    <Compile Include="Assets\GameLogic\Input\InputManager.cs" />
-    <Compile Include="Assets\Scripts\HierarchyHighlighter.cs" />
+    <Compile Include="Assets\GameLogic\HWInput\InputKeyState.cs" />
+    <Compile Include="Assets\GameLogic\HWInput\InputKeyState_WithNegative.cs" />
+    <Compile Include="Assets\GameLogic\HWInput\InputManager.cs" />
+    <Compile Include="Assets\Scripts\Utility\HierarchyHighlighter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Standard Assets\PostProcessing\Shaders\ACES.hlsl" />
