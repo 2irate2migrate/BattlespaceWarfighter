@@ -112,6 +112,38 @@ namespace Assets.GameLogic.Effects
         /// </summary>
         protected float[] _ParticleSizes;
 
+
+
+        /// <summary>
+        /// The start color of a particle.
+        /// </summary>
+        /// <remarks>This is cached as a property of this class to prevent memory allocations in the loop.</remarks>
+        protected Color32 _p_StartColor;
+
+
+
+        /// <summary>
+        /// The distance of a particle from the camera
+        /// </summary>
+        /// <remarks>This is cached as a property of this class to prevent memory allocations in the loop.</remarks>
+        protected float _p_DistanceFromCamera;
+
+
+
+        /// <summary>
+        /// Percentage of distance from the camera's clip distance to the particles position
+        /// </summary>
+        /// <remarks>This is cached as a property of this class to prevent memory allocations in the loop.</remarks>
+        protected float _p_perc_ClipDistanceToCamera;
+
+
+
+        /// <summary>
+        /// Percentage of the distance of this particle to the maximum render distance of particles.  Used to slow down particles further from the camera for a parralax effect
+        /// </summary>
+        /// <remarks>This is cached as a property of this class to prevent memory allocations in the loop.</remarks>
+        protected float _p_perc_MaxDistance;
+
         #endregion
 
 
@@ -191,17 +223,23 @@ namespace Assets.GameLogic.Effects
 
             //The scale at which each star will stretch based on the current velocity
             //ToDo: Clamp max stretch length
-            float StarStretchLength = (ShipVelocityMagnitude * Maximum_Star_Stretch_Multiplier * Star_Size) + 1f;
+            //float StarStretchLength = Mathf.Pow((Mathf.Clamp(((ShipVelocityMagnitude * Star_Size)), 0, Maximum_Star_Stretch_Multiplier) / Maximum_Star_Stretch_Multiplier), 4f) + 1f;
+            float MaxSize = GameLoop.MAIN.CameraManager.CurrentCameraController.Velocity_Max * Star_Size;
+            float StarStretchLength = Mathf.Pow( ((ShipVelocityMagnitude * Star_Size)/MaxSize), 1.5f) * Maximum_Star_Stretch_Multiplier + 1f;
+
 
             if (this._Particles != null && this._Particles.Length >= Maximum_Stars)
             {
                 for(int i = 0; i < Maximum_Stars; i++)
                 {
+                    _p_DistanceFromCamera = (this._Particles[i].position - GameLoop.MAIN.CameraManager.Camera_Current.transform.position).sqrMagnitude;
+                    _p_perc_MaxDistance = _p_DistanceFromCamera / (Max_Distance_From_Camera * Max_Distance_From_Camera);
+
                     //Move particles in the opposite direction that the camera is moving
-                    this._Particles[i].position -= GameLoop.MAIN.CameraManager.CurrentCameraController.Velocity_Current;
+                    this._Particles[i].position -= GameLoop.MAIN.CameraManager.CurrentCameraController.Velocity_Current * (1f-_p_perc_MaxDistance);
 
                     //Cull particles outside of camera distance and respawn them
-                    if ((this._Particles[i].position - GameLoop.MAIN.CameraManager.Camera_Current.transform.position).magnitude > Max_Distance_From_Camera)
+                    if (_p_DistanceFromCamera > Max_Distance_From_Camera * Max_Distance_From_Camera)
                     {
                         //ToDo: only spawn on forwards direction
                         _Particles[i].position = (Random.insideUnitSphere * Max_Distance_From_Camera) + GameLoop.MAIN.CameraManager.Camera_Current.transform.position;
@@ -211,29 +249,32 @@ namespace Assets.GameLogic.Effects
                     if (ShipVelocityMagnitude > 0.001f)
                         this._Particles[i].rotation3D = Quaternion.LookRotation(GameLoop.MAIN.CameraManager.CurrentCameraController.Velocity_Current, GameLoop.MAIN.CameraManager.CurrentCameraController.gameObject.transform.up).eulerAngles;
 
-                    //Use animation principals of squash and stretch on the Particle size according to the velocity
-                    _Particles[i].startSize3D = new Vector3(_ParticleSizes[i] * ZeroToOne, _ParticleSizes[i] * ZeroToOne, _ParticleSizes[i] * StarStretchLength);
 
-                    //Hide particles close to the camera
-                    /*if ((_Particles[i].position - GameLoop.MAIN.CameraManager.Camera_Current.transform.position).sqrMagnitude <= Camera_Clip_Distance)
+                    #region Hide particles close to the camera
+
+                    if (_p_DistanceFromCamera <= Camera_Clip_Distance)
                     {
-                        float perc = (_Particles[i].position - GameLoop.MAIN.CameraManager.Camera_Current.transform.position).sqrMagnitude / Camera_Clip_Distance;
+                        _p_perc_ClipDistanceToCamera = _p_DistanceFromCamera / Camera_Clip_Distance;
 
-                        //this.Particles[i].startColor = new Color(this.Particles[i].startColor.r, 1, 1, 1);
+                        #region Fade Out Particle
 
-                        var t = _Particles[i].startColor;
-                        t.a = (byte)System.Math.Round(perc * byte.MaxValue);
-                        _Particles[i].startColor = t;
+                        _p_StartColor = _Particles[i].startColor;
+                        _p_StartColor.a = (byte)System.Math.Round(_p_perc_ClipDistanceToCamera * byte.MaxValue);
+                        _Particles[i].startColor = _p_StartColor;
 
-                        //this.Particles[i].startSize = perc * StarSize;
-                        _Particles[i].startSize3D = new Vector3(Star_Size * perc, Star_Size * perc, (Star_Size + MaxStarLength) * perc);
+                        #endregion
+
+                        _Particles[i].startSize3D = new Vector3(_ParticleSizes[i] * ZeroToOne * _p_perc_ClipDistanceToCamera, _ParticleSizes[i] * ZeroToOne * _p_perc_ClipDistanceToCamera, _ParticleSizes[i] * StarStretchLength * _p_perc_ClipDistanceToCamera);
                     }
                     else
                     {
-                        //Scale the Particle size according to the velocity
-                        _Particles[i].startSize3D = new Vector3(Star_Size, Star_Size, Star_Size * MaxStarLength);
-                    }*/
+                        //Use animation principals of squash and stretch on the Particle size according to the velocity
+                        _Particles[i].startSize3D = new Vector3(_ParticleSizes[i] * ZeroToOne, _ParticleSizes[i] * ZeroToOne, _ParticleSizes[i] * StarStretchLength);
+                    }
+
+                    #endregion
                 }
+
 
                 //This is the LAST THING we do, which is to update the particle system with the new data we set in the particles this frame
                 this._ParticleSystem.SetParticles(this._Particles, this._Particles.Length);
@@ -312,8 +353,10 @@ namespace Assets.GameLogic.Effects
 
                 _Particles[i].startColor = StarColor;
 
-                //Generate a random star size using this curve: https://www.desmos.com/calculator/zh1cbauj4y
+                //Generate a random star size using this distribution curve: https://www.desmos.com/calculator/zh1cbauj4y
                 RandSize = -Mathf.Pow(((Random.value * 3f) - 1), 3f) + 8f;
+                //RandSize = Mathf.Pow(((Random.value * 2.5f) - 1), 4f);
+
 
                 _ParticleSizes[i] = RandSize;
                 _Particles[i].startSize3D = new Vector3(RandSize, RandSize, RandSize);

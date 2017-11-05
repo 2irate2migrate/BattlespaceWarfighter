@@ -502,7 +502,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147483648
   stopNaNPropagation: 1
-  antialiasingMode: 1
+  antialiasingMode: 3
   temporalAntialiasing:
     jitterSpread: 0.75
     sharpness: 0.25
@@ -1532,10 +1532,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb9448627b77bb4ea92b68264c973d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Maximum_Stars: 1000
+  Maximum_Stars: 2000
   Star_Size: 1
-  Max_Distance_From_Camera: 50
-  Camera_Clip_Distance: 2
+  Max_Distance_From_Camera: 180
+  Camera_Clip_Distance: 5
   Maximum_Star_Stretch_Multiplier: 75
   Star_Color_Generation_Method: 1
 --- !u!199 &2042490410

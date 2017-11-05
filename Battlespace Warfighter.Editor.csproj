@@ -285,6 +285,7 @@
     <Compile Include="Assets\Editor\HierarchyHighlight.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Shaders\SDR - Star Field - HDR Star.shader" />
     <None Include="Assets\Standard Assets\PostProcessing\Shaders\ACES.hlsl" />
     <None Include="Assets\Standard Assets\PostProcessing\Shaders\API\D3D11.hlsl" />
     <None Include="Assets\Standard Assets\PostProcessing\Shaders\API\D3D12.hlsl" />

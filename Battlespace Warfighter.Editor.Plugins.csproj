@@ -268,13 +268,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Battlespace Warfighter.csproj">
-      <Project>{8868ABBA-C188-8A6B-22F3-4B95E39991C7}</Project>
-      <Name>Battlespace Warfighter</Name>
-    </ProjectReference>
     <ProjectReference Include="Battlespace Warfighter.Plugins.csproj">
       <Project>{67A9F9A8-77EE-5675-4C26-0BF0D38A5C01}</Project>
       <Name>Battlespace Warfighter.Plugins</Name>
+    </ProjectReference>
+    <ProjectReference Include="Battlespace Warfighter.csproj">
+      <Project>{8868ABBA-C188-8A6B-22F3-4B95E39991C7}</Project>
+      <Name>Battlespace Warfighter</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -311,6 +311,7 @@
     <Compile Include="Assets\Standard Assets\PostProcessing\Editor\Utils\Styling.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Shaders\SDR - Star Field - HDR Star.shader" />
     <None Include="Assets\Standard Assets\PostProcessing\Shaders\ACES.hlsl" />
     <None Include="Assets\Standard Assets\PostProcessing\Shaders\API\D3D11.hlsl" />
     <None Include="Assets\Standard Assets\PostProcessing\Shaders\API\D3D12.hlsl" />
