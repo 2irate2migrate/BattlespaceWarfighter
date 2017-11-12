@@ -1,0 +1,32 @@
+{
+    'ships.interceptors':
+    [
+        {
+            'Name': 'Lightning',
+			'FactionID': 'mankind_united',
+            'Velocity': 32.3,
+            'HP': 58
+        },
+        {
+            'Name': 'Firespit',
+			'FactionID': 'mankind_united',
+            'Velocity': 5.3,
+            'HP': 1559
+        }
+    ],
+	'ships.bombers':
+    [
+        {
+            'Name': 'Big Bertha',
+			'FactionID': 'faction.mankind_united',
+            'Velocity': 12.3,
+            'HP': 58
+        },
+        {
+            'Name': 'The Dumbo',
+			'FactionID': 'icarus_legion',
+            'Velocity': 10.3,
+            'HP': 1560
+        }
+    ]
+}

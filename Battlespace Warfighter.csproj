@@ -12,12 +12,15 @@
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <TargetFrameworkProfile></TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.2.0f3</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -215,6 +218,12 @@
     <Reference Include="UnityEngine.Purchasing">
       <HintPath>Library\UnityAssemblies\UnityEngine.Purchasing.dll</HintPath>
     </Reference>
+    <Reference Include="CoreLib">
+      <HintPath>Assets\Plugins\CoreLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Assets\Plugins\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Battlespace Warfighter.Plugins.csproj">
@@ -226,11 +235,20 @@
     <Compile Include="Assets\GameLogic\Cameras\_BaseCameraController.cs" />
     <Compile Include="Assets\GameLogic\Cameras\CameraControllerManager.cs" />
     <Compile Include="Assets\GameLogic\Cameras\DefaultCameraController.cs" />
+    <Compile Include="Assets\GameLogic\Data\DataManager.cs" />
+    <Compile Include="Assets\GameLogic\Data\Factions\Faction.cs" />
+    <Compile Include="Assets\GameLogic\Data\Factions\FactionManager.cs" />
+    <Compile Include="Assets\GameLogic\Data\Factions\_FactionSerialized.cs" />
+    <Compile Include="Assets\GameLogic\Data\Ships\Bomber.cs" />
+    <Compile Include="Assets\GameLogic\Data\Ships\Interceptor.cs" />
+    <Compile Include="Assets\GameLogic\Data\Ships\_ShipBase.cs" />
+    <Compile Include="Assets\GameLogic\Data\Ships\_ShipSerialized.cs" />
     <Compile Include="Assets\GameLogic\Effects\InfiniteStarfield.cs" />
     <Compile Include="Assets\GameLogic\GameLoop.cs" />
     <Compile Include="Assets\GameLogic\HWInput\InputKeyState.cs" />
     <Compile Include="Assets\GameLogic\HWInput\InputKeyState_WithNegative.cs" />
     <Compile Include="Assets\GameLogic\HWInput\InputManager.cs" />
+    <Compile Include="Assets\GameLogic\Modding\ModParser.cs" />
     <Compile Include="Assets\Scripts\Utility\HierarchyHighlighter.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -295,6 +313,7 @@
     <None Include="Assets\Standard Assets\PostProcessing\Shaders\StdLib.hlsl" />
     <None Include="Assets\Standard Assets\PostProcessing\Shaders\xRLib.hlsl" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
 </Project>

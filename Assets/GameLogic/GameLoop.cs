@@ -49,6 +49,11 @@ namespace Assets.GameLogic
 
 
 
+        public Data.DataManager DataManager = null;
+
+
+
+
 
         //==============================================================================
         //
@@ -111,6 +116,14 @@ namespace Assets.GameLogic
                 _InfiniteStarfield = GameObject.Find("Star Field").GetComponent<Effects.InfiniteStarfield>();
                 _InfiniteStarfield.TestInit();
             }
+
+            if(DataManager == null)
+            {
+                DataManager = new Data.DataManager();
+            }
+
+            //Load the default mod
+            Modding.ModParser.LoadDefaultMod();
         }
 
 

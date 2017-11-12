@@ -1,0 +1,13 @@
+{
+    'factions':
+    [
+        {
+            'Name': 'Mankind United',
+            'ID': 'mankind_united'
+        },
+		{
+            'Name': 'Icarus Legion',
+            'ID': 'icarus_legion'
+        }
+    ]
+}
