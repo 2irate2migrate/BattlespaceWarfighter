@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using System.Text.RegularExpressions;
 
 using Newtonsoft.Json.Linq;
 
@@ -24,6 +25,14 @@ namespace Assets.GameLogic.Modding
         //                                    METHODS
         //
         //==============================================================================
+
+
+
+        private static Regex _RE_ShipName_WhiteSpace = new Regex($"[- _]+", RegexOptions.None);
+
+
+
+        private static Regex _RE_ShipName_RemoveSpecialCharacters = new Regex("[^0-9a-z_]+", RegexOptions.None);
 
 
 
@@ -114,7 +123,7 @@ namespace Assets.GameLogic.Modding
 
                 if(iFaction != null)
                 {
-                    GameLoop.MAIN.DataManager.FactionManager.Add(iFaction);
+                    GameLoop.MAIN.FactionManager.Add(iFaction);
                 }
             }
         }
@@ -153,6 +162,19 @@ namespace Assets.GameLogic.Modding
                 if (iShip != null)
                     Ships.Add(iShip);
             }
+        }
+
+
+
+        public static string ConvertStringToID(string inString)
+        {
+            if (string.IsNullOrWhiteSpace(inString))
+                return inString;
+
+            inString = _RE_ShipName_WhiteSpace.Replace(inString, "");
+            inString = _RE_ShipName_RemoveSpecialCharacters.Replace(inString, "");
+
+            return inString;
         }
     }
 }

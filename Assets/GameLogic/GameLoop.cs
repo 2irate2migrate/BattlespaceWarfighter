@@ -53,6 +53,18 @@ namespace Assets.GameLogic
 
 
 
+        public Data.Factions.FactionManager FactionManager = null;
+
+
+
+        public Data.Teams.TeamManager TeamManager = null;
+
+
+
+        public Utility.RandomHelper RandomHelper = null;
+
+
+
 
 
         //==============================================================================
@@ -89,6 +101,13 @@ namespace Assets.GameLogic
         {
             Debug.Log("Hello, Space Universe!");
 
+            RandomHelper = this.GetComponent<Utility.RandomHelper>();
+
+            if (RandomHelper != null)
+                RandomHelper.Init();
+            else
+                Debug.LogError($"Could not initialize the {typeof(Utility.RandomHelper).Name} component on {this.name}!");
+
             if (InputManager == null)
             {
                 this.GetComponent<Assets.GameLogic.HWInput.InputManager>();
@@ -122,6 +141,15 @@ namespace Assets.GameLogic
                 DataManager = new Data.DataManager();
             }
 
+            if(FactionManager == null)
+                FactionManager = GameObject.Find("Factions").GetComponent<Data.Factions.FactionManager>();
+
+            if (TeamManager == null)
+                TeamManager = GameObject.Find("Teams").GetComponent<Data.Teams.TeamManager>();
+
+            if (TeamManager != null)
+                TeamManager.Init_PlayerTeam();
+
             //Load the default mod
             Modding.ModParser.LoadDefaultMod();
         }
@@ -138,6 +166,13 @@ namespace Assets.GameLogic
 
             if (_InfiniteStarfield)
                 _InfiniteStarfield.UpdateStarfield();
+        }
+
+
+
+        private void OnApplicationQuit()
+        {
+            Database.DatabaseManager.Close();
         }
     }
 }
