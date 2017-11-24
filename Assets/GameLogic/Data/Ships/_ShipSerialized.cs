@@ -8,6 +8,7 @@ namespace Assets.GameLogic.Data.Ships
 {
     public struct _ShipSerialized
     {
+        public string ID;
         public float Velocity;
         public int HP;
         public string Name;

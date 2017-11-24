@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Assets.GameLogic.Data.Factions
 {
-    public class FactionManager
+    public class FactionManager : MonoBehaviour
     {
         //==============================================================================
         //

@@ -71,7 +71,7 @@ namespace Assets.GameLogic.Data.Factions
         public virtual void DeSerialize(_FactionSerialized inRawFaction)
         {
 
-            if (GameLoop.MAIN?.DataManager?.FactionManager == null)
+            if (GameLoop.MAIN?.FactionManager == null)
                 return;
 
             #region Name
@@ -100,7 +100,7 @@ namespace Assets.GameLogic.Data.Factions
                     //Debug.LogError($"Cannot create Faction:'{_Name}'.  Faction ID must start with 'faction.'!");
                 }
 
-                if (!GameLoop.MAIN.DataManager.FactionManager.FactionIDExists(inRawFaction.ID))
+                if (!GameLoop.MAIN.FactionManager.FactionIDExists(inRawFaction.ID))
                 {
                     this._ID = inRawFaction.ID;
                 }
