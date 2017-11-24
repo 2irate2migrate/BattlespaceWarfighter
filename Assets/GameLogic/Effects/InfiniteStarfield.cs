@@ -160,7 +160,7 @@ namespace Assets.GameLogic.Effects
         // Use this for initialization
         public void TestInit()
         {
-            #region Determine Weather to render the Particle System or not
+            #region Determine Whether to render the Particle System or not
 
             //ToDo: Adjust star amounts based on graphics capabilities
 
