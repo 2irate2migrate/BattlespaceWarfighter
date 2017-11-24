@@ -224,6 +224,12 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>Assets\Plugins\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Data.Sqlite">
+      <HintPath>Assets\Plugins\Mono.Data.Sqlite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data">
+      <HintPath>Assets\Plugins\System.Data.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Battlespace Warfighter.Plugins.csproj">
@@ -235,20 +241,34 @@
     <Compile Include="Assets\GameLogic\Cameras\_BaseCameraController.cs" />
     <Compile Include="Assets\GameLogic\Cameras\CameraControllerManager.cs" />
     <Compile Include="Assets\GameLogic\Cameras\DefaultCameraController.cs" />
+    <Compile Include="Assets\GameLogic\Database\DatabaseManager.cs" />
+    <Compile Include="Assets\GameLogic\Database\Tables\Pilots.cs" />
     <Compile Include="Assets\GameLogic\Data\DataManager.cs" />
+    <Compile Include="Assets\GameLogic\Data\Factions\_FactionSerialized.cs" />
     <Compile Include="Assets\GameLogic\Data\Factions\Faction.cs" />
     <Compile Include="Assets\GameLogic\Data\Factions\FactionManager.cs" />
-    <Compile Include="Assets\GameLogic\Data\Factions\_FactionSerialized.cs" />
+    <Compile Include="Assets\GameLogic\Data\Pilots\_PilotGender.cs" />
+    <Compile Include="Assets\GameLogic\Data\Pilots\Pilot.cs" />
+    <Compile Include="Assets\GameLogic\Data\Pilots\PilotNames.cs" />
+    <Compile Include="Assets\GameLogic\Data\Pilots\_Pilot_Serialized.cs" />
+    <Compile Include="Assets\GameLogic\Data\Ships\_ShipBase.cs" />
+    <Compile Include="Assets\GameLogic\Data\Ships\_ShipKeys.cs" />
+    <Compile Include="Assets\GameLogic\Data\Ships\_ShipRegistry.cs" />
+    <Compile Include="Assets\GameLogic\Data\Ships\_ShipSerialized.cs" />
     <Compile Include="Assets\GameLogic\Data\Ships\Bomber.cs" />
     <Compile Include="Assets\GameLogic\Data\Ships\Interceptor.cs" />
-    <Compile Include="Assets\GameLogic\Data\Ships\_ShipBase.cs" />
-    <Compile Include="Assets\GameLogic\Data\Ships\_ShipSerialized.cs" />
+    <Compile Include="Assets\GameLogic\Data\Teams\Team.cs" />
+    <Compile Include="Assets\GameLogic\Data\Teams\TeamManager.cs" />
     <Compile Include="Assets\GameLogic\Effects\InfiniteStarfield.cs" />
     <Compile Include="Assets\GameLogic\GameLoop.cs" />
     <Compile Include="Assets\GameLogic\HWInput\InputKeyState.cs" />
     <Compile Include="Assets\GameLogic\HWInput\InputKeyState_WithNegative.cs" />
     <Compile Include="Assets\GameLogic\HWInput\InputManager.cs" />
     <Compile Include="Assets\GameLogic\Modding\ModParser.cs" />
+    <Compile Include="Assets\GameLogic\Utility\ExposableMonobehaviour.cs" />
+    <Compile Include="Assets\GameLogic\Utility\ExposableScriptableObject.cs" />
+    <Compile Include="Assets\GameLogic\Utility\ExposePropertyAttribute.cs" />
+    <Compile Include="Assets\GameLogic\Utility\RandomHelper.cs" />
     <Compile Include="Assets\Scripts\Utility\HierarchyHighlighter.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -313,7 +333,6 @@
     <None Include="Assets\Standard Assets\PostProcessing\Shaders\StdLib.hlsl" />
     <None Include="Assets\Standard Assets\PostProcessing\Shaders\xRLib.hlsl" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
 </Project>
